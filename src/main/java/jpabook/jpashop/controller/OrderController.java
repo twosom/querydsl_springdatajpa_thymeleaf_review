@@ -3,6 +3,7 @@ package jpabook.jpashop.controller;
 import jpabook.jpashop.controller.dto.OrderMemberDto;
 import jpabook.jpashop.controller.dto.OrderMovieDto;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.ItemQueryRepository;
 import jpabook.jpashop.repository.MemberQueryRepository;
 import jpabook.jpashop.repository.OrderQueryRepository;
@@ -56,6 +57,8 @@ public class OrderController {
     public String orderList(@ModelAttribute(value = "orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderQueryRepository.findAll(orderSearch);
         model.addAttribute("orders", orders);
+
+
 
         return "order/orderList";
     }

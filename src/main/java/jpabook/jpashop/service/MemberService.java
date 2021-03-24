@@ -1,6 +1,7 @@
 package jpabook.jpashop.service;
 
 
+import jpabook.jpashop.api.MemberApiController;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +40,11 @@ public class MemberService {
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다. member : " + findMembers.get(0).getName());
         }
+    }
+
+    @Transactional
+    public void update(Long id, MemberApiController.UpdateMemberRequest request) {
+        Member member = memberRepository.findOne(id);
+        member.update(request);
     }
 }
