@@ -1,13 +1,14 @@
 package jpbook.jpashop.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
-@Getter
+@Getter @NoArgsConstructor
 public class Delivery {
 
     @Id @GeneratedValue
@@ -22,6 +23,10 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
+
+    public Delivery(Address address) {
+        this.address = address;
+    }
 
     public void addOrder(Order order) {
         this.order = order;

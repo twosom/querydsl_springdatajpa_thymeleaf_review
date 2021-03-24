@@ -1,6 +1,8 @@
 package jpbook.jpashop.service;
 
+import jpbook.jpashop.controller.dto.MovieForm;
 import jpbook.jpashop.domain.item.Item;
+import jpbook.jpashop.domain.item.Movie;
 import jpbook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,5 +28,12 @@ public class ItemService {
 
     public Item findOne(Long itemId) {
         return itemRepository.findOne(itemId);
+    }
+
+
+    @Transactional
+    public void updateItem(Long itemId, MovieForm form) {
+        Movie findMovie = (Movie) itemRepository.findOne(itemId);
+        findMovie.update(form);
     }
 }
